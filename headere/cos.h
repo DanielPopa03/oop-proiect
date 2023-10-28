@@ -16,10 +16,10 @@ public:
     
     Cos(){this->nrProduse = 0; this->total = 0;}
     Cos(const Cos& obj);
-    void adaugaInCos( int, int, int);
-    void pushBack( Pizza& );
-    void stergeProdus( Cos& , int  );
-    friend std::ostream& operator<<(std::ostream& , const Cos&);
+    void adaugaInCos(int id_pizza, int marime, int numar);
+    void pushBack( Pizza& obj );
+    void Cos::stergeProdus( Cos& cos, int index );
+    friend std::ostream& operator<<(std::ostream& out, const Cos& obj);
 };
 
 #endif
