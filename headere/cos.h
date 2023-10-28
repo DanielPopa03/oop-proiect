@@ -18,7 +18,7 @@ public:
     Cos(const Cos& obj);
     void adaugaInCos(int id_pizza, int marime, int numar);
     void pushBack( Pizza& obj );
-    void Cos::stergeProdus( Cos& cos, int index );
+    void stergeProdus( Cos& cos, int index );
     friend std::ostream& operator<<(std::ostream& out, const Cos& obj);
 };
 
