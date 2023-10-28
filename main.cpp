@@ -9,6 +9,9 @@
 #include "headere/client.h"
 #include "headere/comanda.h"
 
+#ifdef __linux__
+#include <X11/Xlib.h>
+#endif
 
 int main() {
     
