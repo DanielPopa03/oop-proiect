@@ -59,7 +59,7 @@ int main() {
                 }
                 // Check if any main button is clicked
                 if (!submenuOpen) {
-                    for (int i = 0; i < static_cast<int>(mainButtons.size()); ++i) {
+                    for (int i = 0; i < mainButtons.size(); ++i) {
                         if (mainButtons[i].contains(mousePos)) {
                             selectedMainButton = i;//////!!!!!!!!!!!!
                             submenuOpen = true;
