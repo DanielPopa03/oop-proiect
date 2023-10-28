@@ -9,7 +9,11 @@
 #include "headere/client.h"
 #include "headere/comanda.h"
 
+
 int main() {
+    
+    Cos _Cos;
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "Pizzeria lui Dorel");
     window.setFramerateLimit(60);
 
@@ -21,19 +25,13 @@ int main() {
 
     std::vector<Buton> mainButtons;
     mainButtons.emplace_back(font, "Pizza Margerita", sf::Vector2f(100, 100));
-    mainButtons.emplace_back(font, "Button 2", sf::Vector2f(100, 160));
-    mainButtons.emplace_back(font, "Button 3", sf::Vector2f(100, 220));
-    mainButtons.emplace_back(font, "Button 4", sf::Vector2f(100, 280));
-    mainButtons.emplace_back(font, "Button 5", sf::Vector2f(100, 340));
+    mainButtons.emplace_back(font, "Pizza Casei", sf::Vector2f(100, 160));
+    mainButtons.emplace_back(font, "Pizza Capricioasa", sf::Vector2f(100, 220));
+    mainButtons.emplace_back(font, "Pizza Polo Italiano", sf::Vector2f(100, 280));
+    mainButtons.emplace_back(font, "Pizza Roma", sf::Vector2f(100, 340));
     
+    //Buton Cos
     buton_Cos butonCos(font,"imagine.png",sf::Vector2f(700,0));
-
-    std::vector<Buton> extraOptionsButtons;
-    extraOptionsButtons.emplace_back(font, "Button 1", sf::Vector2f(300, 200));
-    extraOptionsButtons.emplace_back(font, "Button 1", sf::Vector2f(300, 200));
-    extraOptionsButtons.emplace_back(font, "Button 1", sf::Vector2f(300, 200));
-    extraOptionsButtons.emplace_back(font, "Button 1", sf::Vector2f(300, 200));
-    extraOptionsButtons.emplace_back(font, "Button 1", sf::Vector2f(300, 200));
 
     // Submenu variables
     Submenu submenu(font, sf::Vector2f(300, 200));
@@ -44,9 +42,8 @@ int main() {
    
     bool submenuOpen = false;
     
-
-    
-    Pizza *dummy=nullptr;
+    //Pizza c("mica","hello",23);
+    //std::cout<<c;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -55,29 +52,15 @@ int main() {
                 window.close();
             } else if (event.type == sf::Event::MouseButtonPressed) {
                 sf::Vector2f mousePos(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
+                if(butonCos.contains(mousePos)){
+                   std::cout<< "hello" << std::endl;
+                   
 
+                }
                 // Check if any main button is clicked
                 if (!submenuOpen) {
                     for (int i = 0; i < mainButtons.size(); ++i) {
                         if (mainButtons[i].contains(mousePos)) {
-                            switch (i)
-                            {
-                            case 0:
-                                dummy = new Pizza("Mica","Aluat special, sos tomate, mozzarella", 24.9);
-                                break;
-                            case 1:
-                                dummy = new Pizza("Mica","Aluat special, sos tomate, mozzarella", 24.9);
-                                break;
-                            case 2:
-                                dummy = new Pizza("Mica","Aluat special, sos tomate, mozzarella", 24.9);
-                                break;
-                            case 3:
-                                dummy = new Pizza("Mica","Aluat special, sos tomate, mozzarella", 24.9);
-                                break;
-                            case 4:
-                                dummy = new Pizza("Mica","Aluat special, sos tomate, mozzarella", 24.9);
-                                break;
-                            }
                             selectedMainButton = i;//////!!!!!!!!!!!!
                             submenuOpen = true;
                             break;
@@ -102,7 +85,9 @@ int main() {
                                     if (std::isdigit(numEvent.text.unicode)) {
                                         numberInput = static_cast<char>(numEvent.text.unicode);
                                         enteredNumber = std::stoi(numberInput);
-                                        std::cout<<numberInput<<" "<<enteredNumber<<std::endl;
+                                        _Cos.adaugaInCos(selectedMainButton, selectedSubmenuOption, enteredNumber);
+                                        //std::cout<<_Cos;
+                                        //std::cout << selectedMainButton <<" "<<selectedSubmenuOption << " "<< enteredNumber<<std::endl;
                                         numberInput="";
                                     }
                                     submenuOpen = false;
@@ -138,7 +123,7 @@ int main() {
         window.display();
     }
 
-    if(dummy != nullptr) delete dummy;
+    
 
     return 0;
 }

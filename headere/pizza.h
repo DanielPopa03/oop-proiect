@@ -13,7 +13,7 @@ public:
     Pizza() = default;
     ~Pizza() = default;
     Pizza(const std::string & marime_, const std::string &ingrediente_, float pret_);
-    
+    Pizza(const Pizza& );
     Pizza operator=(Pizza const& obj);
     double getPret(){return this->pret;}
     friend std::ostream& operator<<(std::ostream& os, const Pizza& dt);

@@ -14,6 +14,7 @@ class buton_Cos{
     public:
         buton_Cos(const sf::Font& font, const std::string& caleSpreImagine,const sf::Vector2f& position);
         void draw(sf::RenderWindow& window);
+        bool contains(const sf::Vector2f& point) {return textura.getGlobalBounds().contains(point);}
 };
 
 class Buton {

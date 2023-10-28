@@ -4,10 +4,18 @@
 Pizza::Pizza(const std::string & marime_, const std::string &ingrediente_, float pret_) : marime{marime_}, ingrediente{ingrediente_}, pret{pret_} {};
 
 std::ostream& operator<<(std::ostream& os, const Pizza& dt)
-    {
-    os << dt.marime << '/' << dt.ingrediente<< '/' << dt.pret;
-    return os;
-    }
+{
+os << dt.marime << '/' << dt.ingrediente<< '/' << dt.pret;
+return os;
+}
+
+Pizza::Pizza(const Pizza& obj){
+    this->ingrediente = obj.ingrediente;
+    this->marime = obj.marime;
+    this->pret = obj.pret;
+
+}
+
 
 Pizza Pizza::operator=(const Pizza& obj){
         if(this != &obj){
