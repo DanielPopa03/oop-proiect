@@ -36,7 +36,7 @@ int main() {
     // Submenu variables
     Submenu submenu(font, sf::Vector2f(300, 200));
     int selectedMainButton = -1;
-    int selectedSubmenuOption = -1;
+    int selectedSubmenuOption; //= -1;
     std::string numberInput;
     int enteredNumber;
    
@@ -59,7 +59,7 @@ int main() {
                 }
                 // Check if any main button is clicked
                 if (!submenuOpen) {
-                    for (int i = 0; i < mainButtons.size(); ++i) {
+                    for (int i = 0; i < static_cast<int>(mainButtons.size()); ++i) {
                         if (mainButtons[i].contains(mousePos)) {
                             selectedMainButton = i;//////!!!!!!!!!!!!
                             submenuOpen = true;
@@ -72,7 +72,7 @@ int main() {
                     if (selectedSubmenuOption != -1) {
                         ///Ask for a number input
                         
-                        enteredNumber = 0;
+                        //enteredNumber = 0;
                         sf::Vector2f mouseP(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
                         while (window.isOpen()) {
                             sf::Event numEvent;
