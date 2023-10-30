@@ -17,6 +17,6 @@ public:
     Pizza operator=(Pizza const& obj);
     double getPret(){return this->pret;}
     friend std::ostream& operator<<(std::ostream& os, const Pizza& dt);
-    void setMarime(const std::string& marime);
+    //void setMarime(const std::string& marime);
 };
 #endif

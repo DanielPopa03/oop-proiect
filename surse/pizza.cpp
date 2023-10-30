@@ -26,7 +26,7 @@ Pizza Pizza::operator=(const Pizza& obj){
         return *this;
     }
 
-void Pizza::setMarime(const std::string& marime){
+/*void Pizza::setMarime(const std::string& marime){
         this->marime=marime;
-    }    
+    }   */ 
 

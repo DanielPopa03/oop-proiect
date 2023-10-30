@@ -147,7 +147,7 @@ void Cos::adaugaInCos(int id_pizza, int marime, int numar){
 };
 
 
-void Cos::pushBack(Pizza & obj){
+/*void Cos::pushBack(Pizza & obj){
     (this->produseComandate).emplace_back(obj);
     this->nrProduse += 1;
     this->total += obj.getPret();
@@ -157,7 +157,7 @@ void Cos::stergeProdus( Cos& cos, int index ){
     this->nrProduse -= 1;
     this->total -= (this->produseComandate[index]).getPret();
     (this->produseComandate).erase((this->produseComandate).begin()+index);
-}
+}*/
 
 std::ostream& operator<<(std::ostream& out, const Cos& obj){
     out << "[ " << std::endl;
