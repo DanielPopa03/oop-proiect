@@ -8,7 +8,7 @@ Cos::Cos(const Cos& obj){
          }
 
 void Cos::adaugaInCos(int id_pizza, int marime, int numar){
-    Pizza *dummy;
+    Pizza *dummy = nullptr;
     switch (id_pizza)
     {
     case 0:

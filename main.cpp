@@ -34,7 +34,7 @@ int main() {
     mainButtons.emplace_back(font, "Pizza Roma", sf::Vector2f(100, 340));
     
     //Buton Cos
-    buton_Cos butonCos(font,"imagine.png",sf::Vector2f(700,0));
+    buton_Cos butonCos("imagine.png",sf::Vector2f(700,0));
 
     // Submenu variables
     Submenu submenu(font, sf::Vector2f(300, 200));
