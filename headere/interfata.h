@@ -20,7 +20,7 @@ class buton_Cos{
 class Buton {
         sf::RectangleShape rect;
         sf::Text text;
-        bool active = false;
+        
     public:
         Buton(const sf::Font& font, const std::string& label, const sf::Vector2f& position);
         
