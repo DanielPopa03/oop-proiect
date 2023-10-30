@@ -12,7 +12,7 @@ class buton_Cos{
     sf::RectangleShape rect;
     sf::Text text; 
     public:
-        buton_Cos(const sf::Font& font, const std::string& caleSpreImagine,const sf::Vector2f& position);
+        buton_Cos( const std::string& caleSpreImagine,const sf::Vector2f& position);
         void draw(sf::RenderWindow& window);
         bool contains(const sf::Vector2f& point) {return textura.getGlobalBounds().contains(point);}
 };

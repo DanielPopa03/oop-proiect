@@ -1,13 +1,13 @@
 #include "../headere/interfata.h"
 
-buton_Cos::buton_Cos(const sf::Font& font, const std::string& caleSpreImagine,const sf::Vector2f& position){
+buton_Cos::buton_Cos( const std::string& caleSpreImagine,const sf::Vector2f& position){
     if (!imagine.loadFromFile(caleSpreImagine)) {
         std::cout<<"Eroare incarcare imagine";
     }
     sf::Sprite aux(imagine);
     textura = aux;
     textura.setPosition(position);
-    sf::FloatRect buttonBounds = textura.getGlobalBounds(); 
+    //sf::FloatRect buttonBounds = textura.getGlobalBounds(); 
 }
 
 void buton_Cos::draw(sf::RenderWindow& window){
@@ -53,7 +53,7 @@ void Submenu::draw(sf::RenderWindow& window) {
         }
 
 int Submenu::checkButtonClicked(const sf::Vector2f& point) {
-            for (int i = 0; i < buttons.size(); ++i) {
+            for (unsigned int i = 0; i < buttons.size(); ++i) {
                 if (buttons[i].contains(point)) {
                     return i;
                 }

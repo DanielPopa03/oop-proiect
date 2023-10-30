@@ -161,7 +161,7 @@ void Cos::stergeProdus( Cos& cos, int index ){
 
 std::ostream& operator<<(std::ostream& out, const Cos& obj){
     out << "[ " << std::endl;
-    for(auto i = 0;i < obj.produseComandate.size();i++){
+    for(unsigned int i = 0;i < obj.produseComandate.size();i++){
         out<< obj.produseComandate[i];
         out<<", " << std::endl;
     }
