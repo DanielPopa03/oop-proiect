@@ -108,7 +108,12 @@ endif()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp , surse/*)
+add_executable(${PROJECT_NAME} main.cpp 
+			 surse/client.cpp 
+			 surse/pizza.cpp
+			 surse/cos.cpp
+			 surse/comanda.cpp
+			 surse/interfata.cpp)
 
 ###############################################################################
 
