@@ -1,7 +1,7 @@
 #include "../headere/pizza.h"
 
 
-Pizza::Pizza(const std::string & marime_, const std::string &ingrediente_, float pret_) : marime{marime_}, ingrediente{ingrediente_}, pret{pret_} {};
+Pizza::Pizza(const std::string & marime_, const std::string &ingrediente_, double pret_) : marime{marime_}, ingrediente{ingrediente_}, pret{pret_} {};
 
 std::ostream& operator<<(std::ostream& os, const Pizza& dt)
 {

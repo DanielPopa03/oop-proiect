@@ -12,7 +12,7 @@ private:
 public:
     Pizza() = default;
     ~Pizza() = default;
-    Pizza(const std::string & marime_, const std::string &ingrediente_, float pret_);
+    Pizza(const std::string & marime_, const std::string &ingrediente_, double pret_);
     Pizza(const Pizza& );
     Pizza operator=(Pizza const& obj);
     double getPret(){return this->pret;}
