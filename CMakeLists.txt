@@ -111,7 +111,7 @@ endif()
 add_executable(${PROJECT_NAME} main.cpp 
 			 surse/client.cpp 
 			 surse/Product.cpp
-			 surse/Basket.cpp
+			 surse/basket.cpp
 			 surse/comanda.cpp
 			 surse/interfata.cpp)
 
