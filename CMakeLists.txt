@@ -113,7 +113,7 @@ add_executable(${PROJECT_NAME} main.cpp
 			 surse/Product.cpp
 			 surse/basket.cpp
 			 surse/order.cpp
-			 surse/interfata.cpp
+			 surse/interface.cpp
 			 surse/exception.cpp)
 
 ###############################################################################
