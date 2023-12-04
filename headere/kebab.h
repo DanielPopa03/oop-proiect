@@ -10,6 +10,6 @@ class Kebab:virtual public Product{
         Kebab(const Kebab& obj);
         Kebab(const std::string& name_, const std::string  & size_, const std::string &ingredients_, double price_,const std::string& typeOfMeat_);  
         virtual Kebab* clone(){return (new Kebab(*this));}
-        void print(std::ostream& os, Product& dt); 
+        void print(std::ostream& os, Product& dt) override; 
 };
 #endif

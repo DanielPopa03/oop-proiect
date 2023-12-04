@@ -73,13 +73,10 @@ int main() {
                    butonNextActiv = true;
                    sf::Event cosEvent;
 
-                   if (butonBasketActiv)
-                   {
                       
                       //if( event.type == sf::Event::Closed){ window.close();}
                       if( inBasket.contains(mousePos)){ butonBasketActiv = false; butonNextActiv = false;}
                       
-                   }
                    
                 }
                 // if the basket menu is open it check whether any product was removed

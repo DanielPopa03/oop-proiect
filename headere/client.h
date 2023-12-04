@@ -15,8 +15,7 @@ private:
     
 public:
     Client(){interfaceMode = 0; };
-    Client(const std::string& name_,const std::string& address_); 
-    void setInterfaceMode(int mode){if(0 <= mode && mode >= 3)this->interfaceMode = mode;}
+    void setInterfaceMode(int mode){if(0 <= mode && mode <= 3)this->interfaceMode = mode;}
     void setName(const std::string& name_){ this->name = name_;}
     void setAdress(const std::string& address_){ this->address = address_;}
     void setPhoneNumber(const std::string& phoneNumber_){ this->phoneNumber = phoneNumber_;}

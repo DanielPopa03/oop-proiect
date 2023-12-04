@@ -13,6 +13,6 @@ class Pizza:virtual public Product{
        ~Pizza() = default;
         Pizza(const Pizza& obj);
         virtual Pizza* clone(){return (new Pizza(*this));}
-        void print(std::ostream& os, Product& dt);
+        void print(std::ostream& os, Product& dt) override;
 };
 #endif
