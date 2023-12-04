@@ -112,8 +112,9 @@ add_executable(${PROJECT_NAME} main.cpp
 			 surse/client.cpp 
 			 surse/Product.cpp
 			 surse/basket.cpp
-			 surse/comanda.cpp
-			 surse/interfata.cpp)
+			 surse/order.cpp
+			 surse/interfata.cpp
+			 surse/exception.cpp)
 
 ###############################################################################
 
