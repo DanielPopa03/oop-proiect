@@ -1,12 +1,12 @@
-#ifndef _INTERFATA_H
-#define _INTERFATA_H
+#ifndef _INTERFACE_H
+#define _INTERFACE_H
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
 #include <string>
 //#include "basket.h"
-#include "Product.h"
+//#include "Product.h"
 
 
 class buton_Basket{
@@ -36,12 +36,18 @@ class Submenu {
    
         sf::RectangleShape rect;
         std::vector<Buton> buttons;
+        bool inputNumber;
+        sf::RectangleShape rect2;
+        sf::Text text;
+        sf::Text label;
     public:
         Submenu(const sf::Font& font, const sf::Vector2f& position);
 
         void draw(sf::RenderWindow& window);
-
+        void setInput(bool state){inputNumber = state;}
+        void setText(std::string text_){text.setString(text_);}
         int checkButtonClicked(const sf::Vector2f& point) ;
+        void showInputState(){std::cout<<inputNumber<<std::endl;}
     };
 
 /*class butoaneProduseBasket {

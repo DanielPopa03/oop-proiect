@@ -4,18 +4,24 @@
 #include <string>
 #include <typeinfo>
 #include <vector>
+#include <memory>
 #include "Product.h"
-#include "interfata.h"
+#include "interface.h"
+#include "pizza.h"
+#include "kebab.h"
+#include "pizzakebab.h"
 
 class Basket{
 private:
-    std::vector <Product *> order;
+    unsigned int numberOfProducts;
+    double grandTotal;
+    std::vector < std::shared_ptr<Product> > order;
     std::vector <Buton> displayProduct;
     std::vector <buton_Basket> deleteProduct;
     
 public:
     
-    Basket() = default;
+    Basket(){numberOfProducts = 0;}
     //Basket(const Basket& obj);
     ~Basket();
     void adInBasket(int id_pizza, int marime, int numar, const std::string& imagePath, const sf::Font& font, const sf::Vector2f& position);

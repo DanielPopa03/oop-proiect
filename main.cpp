@@ -3,11 +3,12 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include "headere/interfata.h"
+#include "headere/interface.h"
 #include "headere/Product.h"
 #include "headere/basket.h"
 #include "headere/client.h"
-#include "headere/comanda.h"
+#include "headere/order.h"
+#include "headere/exception.h"
 
 
 
@@ -15,7 +16,7 @@ int main() {
     
     Basket _Basket;
 
-    sf::RenderWindow window(sf::VideoMode(800, 800), "Pizzeria lui Dorel");
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Dorel Pizza");
     window.setFramerateLimit(60);
 
     
@@ -27,60 +28,68 @@ int main() {
     std::vector<Buton> mainButtons;
     mainButtons.emplace_back(font, "Pizza Margerita", sf::Vector2f(100, 100));
     mainButtons.emplace_back(font, "Pizza Casei", sf::Vector2f(100, 160));
-    /*mainButtons.emplace_back(font, "Pizza Capricioasa", sf::Vector2f(100, 220));
-    mainButtons.emplace_back(font, "Pizza Polo Italiano", sf::Vector2f(100, 280));
-    mainButtons.emplace_back(font, "Pizza Roma", sf::Vector2f(100, 340));*/
     mainButtons.emplace_back(font, "Chicken Kebab", sf::Vector2f(100, 220));
     mainButtons.emplace_back(font, "Beef Kebab", sf::Vector2f(100, 280));
     mainButtons.emplace_back(font, "Pizza Kebab", sf::Vector2f(100, 340));
+    
     //Buton Basket
     buton_Basket butonBasket("imagine.png",sf::Vector2f(700,0));
     bool butonBasketActiv = false;
+    
 
     //Inchide Basket
     buton_Basket inBasket("inchide.png", sf::Vector2f(700,0));
      
-    
+    buton_Basket butonNext("next.png",sf::Vector2f(700,700));
+    bool butonNextActiv = false;
+
     // Submenu variabile
     Submenu submenu(font, sf::Vector2f(300, 200));
     int selectedMainButton = -1;
-    int selectedSubmenuOption; //= -1;
-    std::string numberInput;
+    int selectedSubmenuOption;
+    std::string numberInput = "";
     int enteredNumber;
    
     bool submenuOpen = false;
-    
-    
+    //Client interface
+    std::string nameInput = "";
+    std::string adressInput = "";
+    std::string phoneNumberInput = "";
 
-
+    
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            //std::cout<<Product::getGrandTotal()<<" "<<Product::getNumberOfProducts()<<std::endl;
             if (event.type == sf::Event::Closed) {
                 window.close();
-            } else if (event.type == sf::Event::MouseButtonPressed) {
+            }
+            if (event.type == sf::Event::MouseButtonPressed){
+                
                 sf::Vector2f mousePos(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
-                if(butonBasket.contains(mousePos)){
-                   
+                // open and closes the basket menu
+                if(butonBasket.contains(mousePos) && !submenuOpen ){
+                   //
                    butonBasketActiv = true;
+                   butonNextActiv = true;
                    sf::Event cosEvent;
 
                    if (butonBasketActiv)
                    {
                       
                       //if( event.type == sf::Event::Closed){ window.close();}
-                      if( inBasket.contains(mousePos)){ butonBasketActiv = false; }
+                      if( inBasket.contains(mousePos)){ butonBasketActiv = false; butonNextActiv = false;}
                       
                    }
                    
                 }
+                // if the basket menu is open it check whether any product was removed
                 if(butonBasketActiv){
                 _Basket.deletePr(mousePos);
-                //std::cout<<Product::getGrandTotal()<<" "<<Product::getNumberOfProducts()<<std::endl;
                 }
-                // Verifica daca vreunuk din main button e apasat
-                if (!submenuOpen && !butonBasketActiv) {
+                if(butonNextActiv && butonNext.contains(mousePos)){
+                    std::cout<< "b" << std::endl;
+                }
+                if (!submenuOpen && !butonBasketActiv ) {
                     for (unsigned i = 0; i < mainButtons.size(); ++i) {
                         if (mainButtons[i].contains(mousePos)) {
                             selectedMainButton = i;//////!!!!!!!!!!!!
@@ -88,46 +97,49 @@ int main() {
                             break;
                         }
                     }
-                } else {
-                    // ce submenu button a fost apasat
-                    selectedSubmenuOption = submenu.checkButtonClicked(mousePos);//////!!!!!!!!!!!!
-                    if (selectedSubmenuOption != -1) {
-                        
-                        //enteredNumber = 0;
-                        sf::Vector2f mouseP(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
-                        while (window.isOpen()) {
-                            sf::Event numEvent;
-                            while (window.pollEvent(numEvent)) {
-                                
-                                if (numEvent.type == sf::Event::Closed) {
-                                       window.close();
-                                }
-                                
-                                if (numEvent.type == sf::Event::TextEntered) {
-                                    if (std::isdigit(numEvent.text.unicode)) {
-                                        numberInput = static_cast<char>(numEvent.text.unicode);
-                                        enteredNumber = std::stoi(numberInput);
-                                        _Basket.adInBasket(selectedMainButton, selectedSubmenuOption, enteredNumber,"inchide.png" ,font, sf::Vector2f(200,100));
-                                        std::cout<<Product::getGrandTotal()<<" "<<Product::getNumberOfProducts()<<std::endl;
-                                        std::cout<<_Basket;
-                                        numberInput="";
-                                    }
-                                    submenuOpen = false;
-                                    
-                                }
-                            }
-                            if (!submenuOpen) {
-                                break;
-                            }
-                        }
-                    }
-                    window.clear(sf::Color::White);
-                    
+                 } 
+                
+                if(submenuOpen){
+                selectedSubmenuOption = submenu.checkButtonClicked(mousePos);
+                if (selectedSubmenuOption != -1) {
+                        submenu.setInput(true);
                 }
-            }
-        }
+               }
 
-        window.clear(sf::Color::Red);
+             } 
+             if(submenuOpen && event.type == sf::Event::TextEntered){
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+                    try{
+                        if(numberInput != ""){
+                        submenuOpen = false; submenu.setInput(false);
+                        enteredNumber = std::stoi(numberInput);
+                        _Basket.adInBasket(selectedMainButton, selectedSubmenuOption, enteredNumber,"inchide.png" , 
+                        font, sf::Vector2f(200,100));
+                        numberInput = "";submenu.setText(numberInput);std::cout<<_Basket;
+                        break;
+                        }
+                        else throw EnterException();
+                    }catch(std::exception &e){
+                        std::cerr << e.what();
+                    }
+                }
+                else if (std::isdigit(event.text.unicode)) {
+                                        numberInput += static_cast<char>(event.text.unicode);
+                                        submenu.setText(numberInput);
+                                    } 
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)){
+                    try{
+                        if(numberInput != ""){
+                            numberInput.pop_back();
+                            submenu.setText(numberInput);
+                        }else throw DeleteException();
+                    }catch(std::exception &e){
+                        std::cerr << e.what();
+                    }
+                }                  
+             }
+        }            
+    window.clear(sf::Color::White);
     if(butonBasketActiv == false){
         // Draw main buttons
         for (auto& button : mainButtons) {
@@ -145,6 +157,7 @@ int main() {
     else{
         inBasket.draw(window);
         _Basket.draw(window);
+        butonNext.draw(window);
     }
         window.display();
     }

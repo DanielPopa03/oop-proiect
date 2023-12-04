@@ -1,16 +1,16 @@
-#ifndef _COMANDA_H
-#define _COMANDA_H
+#ifndef _ORDER_H
+#define _ORDER_H
 #include "basket.h"
 #include "client.h"
-class Comanda{
+class Order{
 private:
 
     Basket Basket_;
     Client number;
-    std::string metodOfDelivery;
+    std::string methodOfDelivery;
     std::string price;
 
 public:
-    Comanda()=default;
+    Order()=default;
 };
 #endif
