@@ -93,18 +93,59 @@ int Submenu::checkButtonClicked(const sf::Vector2f& point) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*butoaneProduseBasket::butoaneProduseBasket( const sf::Font& font, const std::string& caleSpreImagine, const sf::Vector2f& position, const Basket& obj ){
-    Buton *aux1 ;
-    buton_Basket *aux2;
-    for(unsigned int i = 0; i < obj.produseComandate.size(); i++){
-        std::cout<<"";
-        
-        //aux1 = new Buton(font, (obj.produseComandate[i]).getNume() + "," + (obj.produseComandate[i]).getMarime(), position);
-        //aux2 = new buton_Basket(caleSpreImagine, position);
-    }
-    
+Client_Input::Client_Input(const std::string& caleSpreImagine, const sf::Font& font, const sf::Vector2f& position){
+        if (!imagine.loadFromFile(caleSpreImagine)) {
+        std::cout<<"Eroare incarcare imagine";
+        }
+        sf::Sprite aux(imagine);
+        textura = aux;
+        textura.setPosition(sf::Vector2f(position.x + 280, position.y + 280));
+        sf::FloatRect buttonBounds = textura.getGlobalBounds();
+        text.setFont(font);
+        text.setCharacterSize(20);
+        text.setPosition(sf::Vector2f(position.x + 50, position.y + 60));
+        text.setString("");
+        text.setFillColor(sf::Color::Black);
 
-}*/
+        label.setFont(font);
+        label.setCharacterSize(20);
+        label.setPosition(sf::Vector2f(position.x + 50, position.y + 30));
+        label.setString("Enter your name:");
+        label.setFillColor(sf::Color::Black);
 
+        rect.setSize(sf::Vector2f(300, 300));
+        rect.setPosition(sf::Vector2f(position.x + 50, position.y + 30));
+        rect.setFillColor(sf::Color::Yellow);
+        mode = 0;
 
+}
 
+void Client_Input::draw(sf::RenderWindow& window) {
+            window.draw(rect);
+            window.draw(text);
+            window.draw(label);
+            if(mode <= 3)
+            window.draw(textura);
+        }
+
+bool Client_Input::contains(const sf::Vector2f& point) {
+            if(textura.getGlobalBounds().contains(point) && mode < 3){
+                mode +=1;
+                switch (mode)
+                {
+                case 1:
+                 label.setString("Enter your address:");
+                 text.setString("");
+                 break;
+                case 2:
+                 label.setString("Enter your phoneNumber:");
+                 text.setString("");
+                 break;
+                case 3:
+                label.setString("Proceed to the next stage ->");
+                 text.setString("");
+                break;
+                }
+                return 1;
+            } else return 0;
+        }

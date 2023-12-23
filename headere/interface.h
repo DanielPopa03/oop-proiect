@@ -50,14 +50,19 @@ class Submenu {
         void showInputState(){std::cout<<inputNumber<<std::endl;}
     };
 
-/*class butoaneProduseBasket {
-  std::vector <Buton> afisareTipProdus;
-  std::vector <buton_Basket> scoateProdus;
-  
-  public:
-   butoaneProduseBasket( const sf::Font& font, const std::string& caleSpreImagine, const sf::Vector2f& position, const Basket& obj );
-   void draw( sf::RenderWindow& window);
-   void stergeProdus(Basket& obj, int index );
-};*/
+class Client_Input{
+    protected:
+    int mode;
+    sf::RectangleShape rect;
+    sf::Text text;
+    sf::Text label;
+    sf::Texture imagine;
+    sf::Sprite textura;
+    public:
+        Client_Input(const std::string& caleSpreImagine, const sf::Font& font, const sf::Vector2f& position);
+        void draw(sf::RenderWindow& window);
+        void setText(std::string text_){if(mode < 3)text.setString(text_);}
+        bool contains(const sf::Vector2f& point); 
+};
 
 #endif

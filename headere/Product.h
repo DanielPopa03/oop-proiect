@@ -16,9 +16,11 @@ protected:
 public:
     Product() = default;
     virtual ~Product(){};
-    Product(const std::string& name_,const std::string  & size_, const std::string &ingredients_, double price_);
+    Product(const std::string& name_,const std::string  & size_, const std::vector < std::string > &ingredients_, double price_);
     Product(const Product& );
     double getPrice(){return this->price;}
+    std::string getName(){return this->name;}
+    std::string getSize(){return this->size;}
     //virtual Product* clone();
     virtual void print(std::ostream& os, Product& dt) = 0;
     friend std::ostream& operator<<(std::ostream& os,  Product& dt);

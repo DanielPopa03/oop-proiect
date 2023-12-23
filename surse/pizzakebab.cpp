@@ -1,6 +1,6 @@
 #include "../headere/pizzakebab.h"
 
-PizzaKebab::PizzaKebab(const std::string& name_, const std::string  & size_, const std::string &ingredients_, double price_, const std::string& typeOfmeat_, const std::string& crustType_, const std::string& toppings_)
+PizzaKebab::PizzaKebab(const std::string& name_, const std::string  & size_, const std::vector<std::string> &ingredients_, double price_, const std::string& typeOfmeat_, const std::string& crustType_, const std::string& toppings_)
     : Product(name_, size_, ingredients_,price_), Pizza(name_, size_, ingredients_, price_, crustType_, toppings_),
      Kebab(name_, size_, ingredients_, price_, typeOfmeat_){}
 
@@ -8,7 +8,7 @@ PizzaKebab::PizzaKebab(const std::string& name_, const std::string  & size_, con
 
 PizzaKebab::PizzaKebab(const PizzaKebab& obj):Product(obj),Pizza(obj),Kebab(obj){
     
-    std::cout<<"constr copy Pk  "<<std::endl;
+
 }
 
 

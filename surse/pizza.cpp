@@ -1,10 +1,9 @@
 #include "../headere/pizza.h"
-Pizza::Pizza(const std::string& name_, const std::string& size_, const std::string &ingredients_, double pret_,const std::string& crustType_, 
+Pizza::Pizza(const std::string& name_, const std::string& size_, const std::vector < std::string > &ingredients_, double pret_,const std::string& crustType_, 
 const std::string& toppings_) : Product(name_, size_, ingredients_,pret_), crustType{crustType_}, toppings{toppings_}{};
 
 Pizza::Pizza(const Pizza& obj):Product(obj){
 
-    std::cout<<"constr copy Pizza"<<std::endl;
     this->toppings = obj.toppings;
     this->crustType = obj.crustType;
 }
@@ -22,3 +21,34 @@ void Pizza::print(std::ostream& os, Product& dt){
         
     }
 }
+
+Pizza Pizza_factory::pizza_margerita(std::string size){
+            double price;
+            if(size.compare("Small")== 0){price = 25;}
+            if(size.compare("Medium")== 0){price = 30;}
+            if(size.compare("Large")== 0){price = 35;}
+            std::vector <std::string> ingredients;
+            ingredients.push_back("Special dough");
+            ingredients.push_back("Tomatoes");
+            ingredients.push_back("Cheese");
+            ingredients.push_back("Basil");
+            ingredients.push_back("Egg");
+            ingredients.push_back("Butter");
+            return Pizza("Pizza Margerita",size,ingredients,price,"soft","mozzarella and basil");
+        };
+
+Pizza Pizza_factory::pizza_casei(std::string size){
+            double price;
+            if(size.compare("Small")== 0){price = 25;}
+            if(size.compare("Medium")== 0){price = 30;}
+            if(size.compare("Large")== 0){price = 35;}
+            std::vector <std::string> ingredients;
+            ingredients.push_back("Special dough");
+            ingredients.push_back("Tomatoes");
+            ingredients.push_back("Cheese");
+            ingredients.push_back("Cold cut");
+            ingredients.push_back("Sausages");
+            ingredients.push_back("Eggs");
+            ingredients.push_back("Butter");
+            return Pizza("Pizza Margerita",size,ingredients,price,"soft","mozzarella, cold cuts and sausages");
+        };
