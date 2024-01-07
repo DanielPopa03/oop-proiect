@@ -22,7 +22,7 @@ private:
     
 public:
     
-    Basket(){numberOfProducts = 0;}
+    Basket(){numberOfProducts = 0; grandTotal = 0;}
     //Basket(const Basket& obj);
     ~Basket();
     Basket(const Basket& obj);
