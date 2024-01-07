@@ -1,5 +1,5 @@
 #include "../headere/client.h"
-
+//s
 std::ostream& operator<<(std::ostream& os, const Client& dt)
     {
     os << dt.nume << '/' << dt.adresa << '/' << dt.nrTelefon;
