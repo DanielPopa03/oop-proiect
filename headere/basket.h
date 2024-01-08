@@ -5,7 +5,6 @@
 #include <typeinfo>
 #include <vector>
 #include <memory>
-#include "Pizza.pch"
 #include "Product.h"
 #include "interface.h"
 #include "pizza.h"
