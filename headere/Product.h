@@ -15,7 +15,7 @@ protected:
     
 public:
     Product() = default;
-    virtual ~Product(){};
+    virtual ~Product() = default;
     Product(const std::string& name_,const std::string  & size_, const std::vector < std::string > &ingredients_, double price_);
     Product(const Product& );
     double getPrice(){return this->price;}
