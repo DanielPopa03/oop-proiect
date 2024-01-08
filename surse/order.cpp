@@ -131,7 +131,7 @@ void Order::printReceipt(){
     std::vector<std::wstring> content;
     std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
     for(auto& i : arr){
-        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        //std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
         std::wstring newWideString = converter.from_bytes(i);
         content.push_back(newWideString);
     }
@@ -160,13 +160,13 @@ void Order::printReceipt(){
     file << "5 0 obj\n";
     file << "<<\n/Length " << totalLength << "\n>>\nstream\n";
 
-    size_t offset = 0;
+    //size_t offset = 0;
     int aux = 750;
     for (const auto& row : content) {
         // Convert the wide string to UTF-8
         std::string utf8Row = converter.to_bytes(row);
         file << "BT\n/F1 12 Tf\n50 "<<aux<<" Td\n" << utf8Row << " Tj\nET\n";
-        offset += utf8Row.size() + 30;  // Extra bytes for PDF syntax
+        //offset += utf8Row.size() + 30;  // Extra bytes for PDF syntax
         aux -= 20;
     }
 
