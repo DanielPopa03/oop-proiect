@@ -31,9 +31,9 @@ Order::Order(const sf::Font& font, const sf::Vector2f& windowSize, const Basket&
       textAux.setPosition(sf::Vector2f( 0 , 0 + cursorPositionX));
       aux.push_back(textAux);
       cursorPositionX +=40;
-      for (int i = 0; i < Basket_.order.size(); ++i) {
+      for (unsigned int i = 0; i < Basket_.order.size(); ++i) {
         int quantity = 1;
-        for(int j = i + 1; j < Basket_.order.size() ; ++j){
+        for(unsigned int j = i + 1; j < Basket_.order.size() ; ++j){
             if ( Basket_.order[i]->getName() == Basket_.order[j]->getName() &&
             Basket_.order[i]->getSize() == Basket_.order[j]->getSize() ){
                 quantity += 1;
@@ -86,7 +86,7 @@ Order::Order(const sf::Font& font, const sf::Vector2f& windowSize, const Basket&
 
 
 void Order::draw(sf::RenderWindow& window){
-    for(int  i = 0; i < text[actualDispalyMode].size(); ++i){
+    for(unsigned int  i = 0; i < text[actualDispalyMode].size(); ++i){
         window.draw(text[actualDispalyMode][i]);
     }
 
@@ -123,7 +123,7 @@ void Order::printReceipt(){
     //file << "<<\n/Length " << totalLength << "\n>>\nstream\n";
     std::vector <std::string> arr;
     for (int i = 0; i < mode ; i++){
-            for (int j = 0; j < text[i].size(); j++){
+            for (unsigned int j = 0; j < text[i].size(); j++){
                 std::string c = text[i][j].getString();
                 arr.push_back("(" + c + ")");
             }

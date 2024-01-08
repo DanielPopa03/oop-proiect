@@ -7,7 +7,7 @@ buton_Basket::buton_Basket(const std::string& caleSpreImagine,const sf::Vector2f
     sf::Sprite aux(imagine);
     textura = aux;
     textura.setPosition(position);
-    sf::FloatRect buttonBounds = textura.getGlobalBounds(); 
+    //sf::FloatRect buttonBounds = textura.getGlobalBounds(); 
 }
 
 void buton_Basket::draw(sf::RenderWindow& window){
@@ -83,7 +83,7 @@ void Submenu::draw(sf::RenderWindow& window) {
         }
 
 int Submenu::checkButtonClicked(const sf::Vector2f& point) {
-            for (int i = 0; i < buttons.size(); ++i) {
+            for (unsigned int i = 0; i < buttons.size(); ++i) {
                 if (buttons[i].contains(point)) {
                     return i;
                 }
@@ -100,7 +100,7 @@ Client_Input::Client_Input(const std::string& caleSpreImagine, const sf::Font& f
         sf::Sprite aux(imagine);
         textura = aux;
         textura.setPosition(sf::Vector2f(position.x + 280, position.y + 280));
-        sf::FloatRect buttonBounds = textura.getGlobalBounds();
+        //sf::FloatRect buttonBounds = textura.getGlobalBounds();
         text.setFont(font);
         text.setCharacterSize(20);
         text.setPosition(sf::Vector2f(position.x + 50, position.y + 60));
