@@ -14,10 +14,9 @@ protected:
     std::vector < std::string > ingredients;
     
 public:
-   
+    Product() = default;
     virtual ~Product(){};
-    Product(double pret_, const std::string& name_, const std::string& size_, const std::vector <std::string> &ingredients_) : price{pret_},  name{name_},size(size_),
- ingredients{ingredients_} {};
+    Product(const std::string& name_,const std::string  & size_, const std::vector < std::string > &ingredients_, double price_);
     Product(const Product& );
     double getPrice(){return this->price;}
     std::string getName(){return this->name;}

@@ -24,7 +24,7 @@ public:
     void moveSlide(int delta);
     void print(){
         for (int i = 0; i < mode ; i++){
-            for (unsigned int j = 0; j < text[i].size(); j++){
+            for (int j = 0; j < text[i].size(); j++){
                 std::string c = text[i][j].getString();
                 std::cout<< c;
             }

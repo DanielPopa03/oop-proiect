@@ -233,7 +233,7 @@ void Basket::deleteFromProdus(int index ){
 */
 std::ostream& operator<<(std::ostream& out, const Basket& obj){
     out<<" [" << std::endl;
-    for(unsigned int i = 0;i < obj.order.size();i++){
+    for(auto i = 0;i < obj.order.size();i++){
         out<< *(obj.order[i]);
         out<<", " << std::endl;
     }

@@ -17,9 +17,9 @@ class PizzaKebab:public Pizza, public Kebab{
 
 class PizzaKebab_factory{
     public:
-        static PizzaKebab PizzaKebabc(const std::string& size){
+        static PizzaKebab PizzaKebabc(std::string size){
             double price;
-            if(size.compare("Small")== 0){price = 25;} else price = 25;
+            if(size.compare("Small")== 0){price = 25;}
             if(size.compare("Medium")== 0){price = 30;}
             if(size.compare("Large")== 0){price = 35;}
             std::vector <std::string> ingredients;

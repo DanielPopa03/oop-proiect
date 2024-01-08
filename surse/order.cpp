@@ -31,9 +31,9 @@ Order::Order(const sf::Font& font, const sf::Vector2f& windowSize, const Basket&
       textAux.setPosition(sf::Vector2f( 0 , 0 + cursorPositionX));
       aux.push_back(textAux);
       cursorPositionX +=40;
-      for (unsigned int i = 0; i < Basket_.order.size(); ++i) {
+      for (int i = 0; i < Basket_.order.size(); ++i) {
         int quantity = 1;
-        for(unsigned int j = i + 1; j < Basket_.order.size() ; ++j){
+        for(int j = i + 1; j < Basket_.order.size() ; ++j){
             if ( Basket_.order[i]->getName() == Basket_.order[j]->getName() &&
             Basket_.order[i]->getSize() == Basket_.order[j]->getSize() ){
                 quantity += 1;
@@ -86,7 +86,7 @@ Order::Order(const sf::Font& font, const sf::Vector2f& windowSize, const Basket&
 
 
 void Order::draw(sf::RenderWindow& window){
-    for(unsigned int  i = 0; i < text[actualDispalyMode].size(); ++i){
+    for(int  i = 0; i < text[actualDispalyMode].size(); ++i){
         window.draw(text[actualDispalyMode][i]);
     }
 
@@ -123,7 +123,7 @@ void Order::printReceipt(){
     //file << "<<\n/Length " << totalLength << "\n>>\nstream\n";
     std::vector <std::string> arr;
     for (int i = 0; i < mode ; i++){
-            for (unsigned int j = 0; j < text[i].size(); j++){
+            for (int j = 0; j < text[i].size(); j++){
                 std::string c = text[i][j].getString();
                 arr.push_back("(" + c + ")");
             }
@@ -131,6 +131,7 @@ void Order::printReceipt(){
     std::vector<std::wstring> content;
     std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
     for(auto& i : arr){
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
         std::wstring newWideString = converter.from_bytes(i);
         content.push_back(newWideString);
     }
@@ -159,11 +160,13 @@ void Order::printReceipt(){
     file << "5 0 obj\n";
     file << "<<\n/Length " << totalLength << "\n>>\nstream\n";
 
+    size_t offset = 0;
     int aux = 750;
     for (const auto& row : content) {
         // Convert the wide string to UTF-8
         std::string utf8Row = converter.to_bytes(row);
         file << "BT\n/F1 12 Tf\n50 "<<aux<<" Td\n" << utf8Row << " Tj\nET\n";
+        offset += utf8Row.size() + 30;  // Extra bytes for PDF syntax
         aux -= 20;
     }
 
